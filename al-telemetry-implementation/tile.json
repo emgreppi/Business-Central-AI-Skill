@@ -1,0 +1,11 @@
+{
+  "name": "bc-skills/implementing-telemetry",
+  "version": "1.0.0",
+  "summary": "Logs custom events to Application Insights using Feature Telemetry and Session.LogMessage in BC",
+  "private": false,
+  "skills": {
+    "implementing-telemetry": {
+      "path": "SKILL.md"
+    }
+  }
+}

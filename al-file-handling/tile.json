@@ -1,0 +1,11 @@
+{
+  "name": "bc-skills/handling-bc-files",
+  "version": "1.0.0",
+  "summary": "Uploads, downloads, and stores files using InStream/OutStream, XMLport, and Azure Blob Storage in BC",
+  "private": false,
+  "skills": {
+    "handling-bc-files": {
+      "path": "SKILL.md"
+    }
+  }
+}

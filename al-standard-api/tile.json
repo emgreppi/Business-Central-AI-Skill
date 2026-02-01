@@ -1,0 +1,11 @@
+{
+  "name": "bc-skills/consuming-bc-standard-api",
+  "version": "1.0.0",
+  "summary": "Consumes Microsoft standard BC APIs (v2.0) for customers, vendors, items, and other built-in entities",
+  "private": false,
+  "skills": {
+    "consuming-bc-standard-api": {
+      "path": "SKILL.md"
+    }
+  }
+}

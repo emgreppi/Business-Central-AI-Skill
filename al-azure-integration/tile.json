@@ -1,0 +1,11 @@
+{
+  "name": "bc-skills/integrating-azure-services",
+  "version": "1.0.0",
+  "summary": "Calls Azure Functions and orchestrates Logic Apps workflows from Business Central AL code",
+  "private": false,
+  "skills": {
+    "integrating-azure-services": {
+      "path": "SKILL.md"
+    }
+  }
+}

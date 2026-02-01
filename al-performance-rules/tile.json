@@ -1,0 +1,11 @@
+{
+  "name": "bc-skills/optimizing-bc-performance",
+  "version": "1.0.0",
+  "summary": "Optimizes AL code performance with data access patterns, lock reduction, and SaaS best practices",
+  "private": false,
+  "skills": {
+    "optimizing-bc-performance": {
+      "path": "SKILL.md"
+    }
+  }
+}
