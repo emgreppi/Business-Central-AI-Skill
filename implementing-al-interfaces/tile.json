@@ -1,6 +1,6 @@
 {
   "name": "bc-skills/implementing-al-interfaces",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "docs": "SKILL.md",
   "summary": "Dependency injection, polymorphism, and plugin architectures in AL",
   "private": false

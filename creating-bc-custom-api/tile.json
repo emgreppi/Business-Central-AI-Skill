@@ -1,6 +1,6 @@
 {
   "name": "bc-skills/creating-bc-custom-api",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "docs": "SKILL.md",
   "summary": "Create custom API pages (CRUD) and API queries (read-only joins) in AL",
   "private": false
