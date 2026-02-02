@@ -87,6 +87,16 @@ skill-name/
 - Business Central development environment (for AL skills)
 - Azure subscription (for Azure integration skills)
 
+## Contributing
+
+1. Fork the repository
+2. Create a new skill following the existing structure
+3. Test with `tessl skill review path/to/skill`
+4. Submit a pull request
+
+## License
+
+MIT
 
 ## Resources
 
