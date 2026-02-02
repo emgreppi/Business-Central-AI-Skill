@@ -1,0 +1,7 @@
+{
+  "name": "bc-skills/building-cue-rolecenters",
+  "version": "1.0.0",
+  "docs": "SKILL.md",
+  "summary": "Cue tiles, Activities CardPart, and FlowFields with drill-down for BC Role Centers",
+  "private": false
+}

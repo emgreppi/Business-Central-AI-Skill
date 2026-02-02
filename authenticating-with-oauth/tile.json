@@ -1,0 +1,7 @@
+{
+  "name": "bc-skills/authenticating-with-oauth",
+  "version": "1.0.0",
+  "docs": "SKILL.md",
+  "summary": "OAuth 2.0 Client Credentials and Authorization Code flows for Business Central",
+  "private": false
+}

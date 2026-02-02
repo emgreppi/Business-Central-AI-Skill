@@ -1,0 +1,7 @@
+{
+  "name": "bc-skills/controlling-al-access",
+  "version": "1.0.0",
+  "docs": "SKILL.md",
+  "summary": "Control AL object visibility with Access property (Public, Internal, Protected, Local)",
+  "private": false
+}

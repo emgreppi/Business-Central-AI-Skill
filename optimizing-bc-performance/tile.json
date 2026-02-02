@@ -1,0 +1,7 @@
+{
+  "name": "bc-skills/optimizing-bc-performance",
+  "version": "1.0.0",
+  "docs": "SKILL.md",
+  "summary": "BC SaaS performance patterns, data access optimization, and best practices",
+  "private": false
+}

@@ -1,0 +1,7 @@
+{
+  "name": "bc-skills/writing-git-commits",
+  "version": "1.0.0",
+  "docs": "SKILL.md",
+  "summary": "Git commit message format, types, and conventions",
+  "private": false
+}

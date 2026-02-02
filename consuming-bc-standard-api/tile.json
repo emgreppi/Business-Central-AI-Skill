@@ -1,0 +1,7 @@
+{
+  "name": "bc-skills/consuming-bc-standard-api",
+  "version": "1.0.0",
+  "docs": "SKILL.md",
+  "summary": "Consume Microsoft standard Business Central APIs (v2.0) - no AL coding required",
+  "private": false
+}

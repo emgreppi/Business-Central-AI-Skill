@@ -1,0 +1,7 @@
+{
+  "name": "bc-skills/integrating-azure-services",
+  "version": "1.0.0",
+  "docs": "SKILL.md",
+  "summary": "Azure Functions and Logic Apps integration from Business Central AL",
+  "private": false
+}

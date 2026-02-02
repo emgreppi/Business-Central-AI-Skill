@@ -1,0 +1,7 @@
+{
+  "name": "bc-skills/implementing-telemetry",
+  "version": "1.0.0",
+  "docs": "SKILL.md",
+  "summary": "Custom telemetry with Feature Telemetry and Session.LogMessage for BC",
+  "private": false
+}

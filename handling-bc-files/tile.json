@@ -1,0 +1,7 @@
+{
+  "name": "bc-skills/handling-bc-files",
+  "version": "1.0.0",
+  "docs": "SKILL.md",
+  "summary": "File attachments, XMLport, and Azure Blob Storage patterns for Business Central",
+  "private": false
+}

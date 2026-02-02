@@ -1,0 +1,7 @@
+{
+  "name": "bc-skills/binding-event-subscribers",
+  "version": "1.0.0",
+  "docs": "SKILL.md",
+  "summary": "Dynamic event subscriber activation with BindSubscription in Business Central",
+  "private": false
+}
