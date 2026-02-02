@@ -55,7 +55,7 @@ Skills are structured knowledge files that teach Claude Code how to implement sp
 ### Using Tessl CLI
 
 ```bash
-tessl install github:your-username/bc-skills
+tessl install github:emgreppi/Business-Central-AI-Skill
 ```
 
 ### Manual Installation

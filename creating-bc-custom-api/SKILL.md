@@ -34,7 +34,7 @@ metadata:
 | `<SourceTable>` | Source table name | `"Rental Machine"` |
 | `<entityName>` | Singular entity name (camelCase) | `rentalMachine` |
 | `<entitySetName>` | Plural entity name (camelCase) | `rentalMachines` |
-| `<publisher>` | APIPublisher value | `saliniLife` |
+| `<publisher>` | APIPublisher value | `contoso` |
 | `<group>` | APIGroup value | `rental` |
 | `<KeyField>` | Primary key field | `"No."` |
 | `<Field1>`, `<Field2>` | Table fields to expose | `"Description"`, `"Status"` |
@@ -222,7 +222,7 @@ https://api.businesscentral.dynamics.com/v2.0/<TenantID>/<Environment>/api/<publ
 
 **Example:**
 ```
-https://api.businesscentral.dynamics.com/v2.0/contoso.com/Production/api/saliniLife/rental/v2.0/companies(xxx)/rentalMachines
+https://api.businesscentral.dynamics.com/v2.0/contoso.com/Production/api/contoso/rental/v2.0/companies(xxx)/rentalMachines
 ```
 
 ## Schema Version 2.0 (BC v24+)

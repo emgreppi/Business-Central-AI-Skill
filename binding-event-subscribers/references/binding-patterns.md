@@ -7,7 +7,7 @@ Additional patterns and anti-patterns for manual event subscriber binding.
 Bind subscribers only for the duration of a specific transaction:
 
 ```al
-codeunit 50110 "SL Audit Logger"
+codeunit 50110 "DEMOAudit Logger"
 {
     EventSubscriberInstance = Manual;
 
@@ -40,11 +40,11 @@ codeunit 50110 "SL Audit Logger"
 ```
 
 ```al
-codeunit 50111 "SL Order Processor"
+codeunit 50111 "DEMOOrder Processor"
 {
     procedure ProcessOrderWithAudit(var SalesHeader: Record "Sales Header")
     var
-        AuditLogger: Codeunit "SL Audit Logger";
+        AuditLogger: Codeunit "DEMOAudit Logger";
         AuditLog: Text;
     begin
         // Start auditing
@@ -80,7 +80,7 @@ codeunit 50111 "SL Order Processor"
 Enable/disable functionality through feature flags:
 
 ```al
-codeunit 50112 "SL Feature Subscribers"
+codeunit 50112 "DEMOFeature Subscribers"
 {
     EventSubscriberInstance = Manual;
 
@@ -99,10 +99,10 @@ codeunit 50112 "SL Feature Subscribers"
 ```
 
 ```al
-codeunit 50113 "SL Feature Manager"
+codeunit 50113 "DEMOFeature Manager"
 {
     var
-        FeatureSubscribers: Codeunit "SL Feature Subscribers";
+        FeatureSubscribers: Codeunit "DEMOFeature Subscribers";
         IsBound: Boolean;
 
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"System Initialization", 'OnAfterLogin', '', false, false)]
@@ -114,7 +114,7 @@ codeunit 50113 "SL Feature Manager"
 
     local procedure InitializeFeatures()
     var
-        FeatureSetup: Record "SL Feature Setup";
+        FeatureSetup: Record "DEMOFeature Setup";
     begin
         if not FeatureSetup.Get() then
             exit;
@@ -127,7 +127,7 @@ codeunit 50113 "SL Feature Manager"
 
     procedure RefreshFeatures()
     var
-        FeatureSetup: Record "SL Feature Setup";
+        FeatureSetup: Record "DEMOFeature Setup";
     begin
         FeatureSetup.Get();
 
@@ -147,7 +147,7 @@ codeunit 50113 "SL Feature Manager"
 Use manual binding to control event behavior in tests:
 
 ```al
-codeunit 50114 "SL External API Subscriber"
+codeunit 50114 "DEMOExternal API Subscriber"
 {
     EventSubscriberInstance = Manual;
 
@@ -167,10 +167,10 @@ codeunit 50114 "SL External API Subscriber"
 
 ```al
 // Production code - binds the subscriber
-codeunit 50115 "SL Sales Setup"
+codeunit 50115 "DEMOSales Setup"
 {
     var
-        ExternalAPISubscriber: Codeunit "SL External API Subscriber";
+        ExternalAPISubscriber: Codeunit "DEMOExternal API Subscriber";
 
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"System Initialization", 'OnAfterLogin', '', false, false)]
     local procedure OnAfterLogin()
@@ -202,7 +202,7 @@ end;
 
 ```al
 // WRONG: Critical validation that could be missed
-codeunit 50120 "SL Credit Check" // BAD EXAMPLE
+codeunit 50120 "DEMOCredit Check" // BAD EXAMPLE
 {
     EventSubscriberInstance = Manual;  // WRONG!
 
@@ -219,7 +219,7 @@ codeunit 50120 "SL Credit Check" // BAD EXAMPLE
 
 ```al
 // CORRECT: Critical validation always runs
-codeunit 50121 "SL Credit Check"
+codeunit 50121 "DEMOCredit Check"
 {
     // EventSubscriberInstance = StaticAutomatic (default, no need to specify)
 
@@ -238,10 +238,10 @@ codeunit 50121 "SL Credit Check"
 
 ```al
 // WRONG: No unbind - subscribers stay active until session ends
-pageextension 50102 "SL Item Card Ext" extends "Item Card"
+pageextension 50102 "DEMOItem Card Ext" extends "Item Card"
 {
     var
-        ItemSubscribers: Codeunit "SL Item Subscribers";
+        ItemSubscribers: Codeunit "DEMOItem Subscribers";
 
     trigger OnOpenPage()
     begin
@@ -254,10 +254,10 @@ pageextension 50102 "SL Item Card Ext" extends "Item Card"
 **CORRECT:** Always unbind when done:
 
 ```al
-pageextension 50103 "SL Item Card Ext" extends "Item Card"
+pageextension 50103 "DEMOItem Card Ext" extends "Item Card"
 {
     var
-        ItemSubscribers: Codeunit "SL Item Subscribers";
+        ItemSubscribers: Codeunit "DEMOItem Subscribers";
         IsBound: Boolean;
 
     trigger OnOpenPage()
@@ -280,11 +280,11 @@ pageextension 50103 "SL Item Card Ext" extends "Item Card"
 
 ```al
 // WRONG: This won't work as expected
-codeunit 50122 "SL Global Binding" // BAD EXAMPLE
+codeunit 50122 "DEMOGlobal Binding" // BAD EXAMPLE
 {
     procedure EnableFeatureForAllUsers()
     var
-        FeatureSubscriber: Codeunit "SL Feature Subscriber";
+        FeatureSubscriber: Codeunit "DEMOFeature Subscriber";
     begin
         // This only binds for the current session!
         // Other users' sessions are NOT affected
@@ -297,13 +297,13 @@ codeunit 50122 "SL Global Binding" // BAD EXAMPLE
 
 ```al
 // CORRECT: Each session binds on login based on setup
-codeunit 50123 "SL Session Initializer"
+codeunit 50123 "DEMOSession Initializer"
 {
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"System Initialization", 'OnAfterLogin', '', false, false)]
     local procedure OnAfterLogin()
     var
-        Setup: Record "SL Feature Setup";
-        FeatureSubscriber: Codeunit "SL Feature Subscriber";
+        Setup: Record "DEMOFeature Setup";
+        FeatureSubscriber: Codeunit "DEMOFeature Subscriber";
     begin
         if Setup.Get() and Setup."Feature Enabled" then
             BindSubscription(FeatureSubscriber);

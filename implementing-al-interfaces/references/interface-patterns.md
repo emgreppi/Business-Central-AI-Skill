@@ -5,7 +5,7 @@
 ### Interface Definition
 
 ```al
-interface "SBM INotification Provider"
+interface "DEMO INotification Provider"
 {
     procedure SendNotification(Recipient: Text; Subject: Text; Body: Text): Boolean;
     procedure GetProviderName(): Text;
@@ -16,24 +16,24 @@ interface "SBM INotification Provider"
 ### Enum with Implementations
 
 ```al
-enum 50110 "SBM Notification Provider" implements "SBM INotification Provider"
+enum 50110 "DEMO Notification Provider" implements "DEMO INotification Provider"
 {
     Extensible = true;
 
     value(0; Email)
     {
         Caption = 'Email';
-        Implementation = "SBM INotification Provider" = "SBM Email Notifier";
+        Implementation = "DEMO INotification Provider" = "DEMO Email Notifier";
     }
     value(1; Teams)
     {
         Caption = 'Microsoft Teams';
-        Implementation = "SBM INotification Provider" = "SBM Teams Notifier";
+        Implementation = "DEMO INotification Provider" = "DEMO Teams Notifier";
     }
     value(2; SMS)
     {
         Caption = 'SMS';
-        Implementation = "SBM INotification Provider" = "SBM SMS Notifier";
+        Implementation = "DEMO INotification Provider" = "DEMO SMS Notifier";
     }
 }
 ```
@@ -41,7 +41,7 @@ enum 50110 "SBM Notification Provider" implements "SBM INotification Provider"
 ### Email Implementation
 
 ```al
-codeunit 50111 "SBM Email Notifier" implements "SBM INotification Provider"
+codeunit 50111 "DEMO Email Notifier" implements "DEMO INotification Provider"
 {
     var
         EmailMessage: Codeunit "Email Message";
@@ -70,10 +70,10 @@ codeunit 50111 "SBM Email Notifier" implements "SBM INotification Provider"
 ### Teams Implementation
 
 ```al
-codeunit 50112 "SBM Teams Notifier" implements "SBM INotification Provider"
+codeunit 50112 "DEMO Teams Notifier" implements "DEMO INotification Provider"
 {
     var
-        Setup: Record "SBM Notification Setup";
+        Setup: Record "DEMO Notification Setup";
 
     procedure SendNotification(Recipient: Text; Subject: Text; Body: Text): Boolean
     var
@@ -111,7 +111,7 @@ codeunit 50112 "SBM Teams Notifier" implements "SBM INotification Provider"
 ### Interface
 
 ```al
-interface "SBM IData Exporter"
+interface "DEMO IData Exporter"
 {
     procedure ExportCustomers(var Customer: Record Customer): Text;
     procedure ExportItems(var Item: Record Item): Text;
@@ -123,24 +123,24 @@ interface "SBM IData Exporter"
 ### Enum
 
 ```al
-enum 50120 "SBM Export Format" implements "SBM IData Exporter"
+enum 50120 "DEMO Export Format" implements "DEMO IData Exporter"
 {
     Extensible = true;
 
     value(0; CSV)
     {
         Caption = 'CSV';
-        Implementation = "SBM IData Exporter" = "SBM CSV Exporter";
+        Implementation = "DEMO IData Exporter" = "DEMO CSV Exporter";
     }
     value(1; JSON)
     {
         Caption = 'JSON';
-        Implementation = "SBM IData Exporter" = "SBM JSON Exporter";
+        Implementation = "DEMO IData Exporter" = "DEMO JSON Exporter";
     }
     value(2; XML)
     {
         Caption = 'XML';
-        Implementation = "SBM IData Exporter" = "SBM XML Exporter";
+        Implementation = "DEMO IData Exporter" = "DEMO XML Exporter";
     }
 }
 ```
@@ -148,7 +148,7 @@ enum 50120 "SBM Export Format" implements "SBM IData Exporter"
 ### CSV Exporter
 
 ```al
-codeunit 50121 "SBM CSV Exporter" implements "SBM IData Exporter"
+codeunit 50121 "DEMO CSV Exporter" implements "DEMO IData Exporter"
 {
     procedure ExportCustomers(var Customer: Record Customer): Text
     var
@@ -204,7 +204,7 @@ codeunit 50121 "SBM CSV Exporter" implements "SBM IData Exporter"
 ### JSON Exporter
 
 ```al
-codeunit 50122 "SBM JSON Exporter" implements "SBM IData Exporter"
+codeunit 50122 "DEMO JSON Exporter" implements "DEMO IData Exporter"
 {
     procedure ExportCustomers(var Customer: Record Customer): Text
     var
@@ -257,14 +257,14 @@ codeunit 50122 "SBM JSON Exporter" implements "SBM IData Exporter"
 ### Interfaces
 
 ```al
-interface "SBM IOrder Validator"
+interface "DEMO IOrder Validator"
 {
     procedure Validate(SalesHeader: Record "Sales Header"): Boolean;
     procedure GetErrorMessage(): Text;
     procedure GetValidatorName(): Text;
 }
 
-interface "SBM IValidation Logger"
+interface "DEMO IValidation Logger"
 {
     procedure LogValidation(OrderNo: Code[20]; ValidatorName: Text; Success: Boolean; ErrorMsg: Text);
 }
@@ -273,7 +273,7 @@ interface "SBM IValidation Logger"
 ### Validator with Both Interfaces
 
 ```al
-codeunit 50130 "SBM Credit Limit Validator" implements "SBM IOrder Validator", "SBM IValidation Logger"
+codeunit 50130 "DEMO Credit Limit Validator" implements "DEMO IOrder Validator", "DEMO IValidation Logger"
 {
     var
         LastError: Text;
@@ -318,7 +318,7 @@ codeunit 50130 "SBM Credit Limit Validator" implements "SBM IOrder Validator", "
     // IValidation Logger
     procedure LogValidation(OrderNo: Code[20]; ValidatorName: Text; Success: Boolean; ErrorMsg: Text)
     var
-        ValidationLog: Record "SBM Validation Log";
+        ValidationLog: Record "DEMO Validation Log";
     begin
         ValidationLog.Init();
         ValidationLog."Entry No." := 0;  // AutoIncrement
@@ -335,13 +335,13 @@ codeunit 50130 "SBM Credit Limit Validator" implements "SBM IOrder Validator", "
 ### Using is/as Operators (BC25+)
 
 ```al
-codeunit 50140 "SBM Validation Runner"
+codeunit 50140 "DEMO Validation Runner"
 {
     procedure RunValidators(SalesHeader: Record "Sales Header"): Boolean
     var
-        Validators: List of [Interface "SBM IOrder Validator"];
-        Validator: Interface "SBM IOrder Validator";
-        Logger: Interface "SBM IValidation Logger";
+        Validators: List of [Interface "DEMO IOrder Validator"];
+        Validator: Interface "DEMO IOrder Validator";
+        Logger: Interface "DEMO IValidation Logger";
         AllPassed: Boolean;
     begin
         LoadValidators(Validators);
@@ -352,8 +352,8 @@ codeunit 50140 "SBM Validation Runner"
                 AllPassed := false;
 
                 // Check if validator also implements logging
-                if Validator is "SBM IValidation Logger" then begin
-                    Logger := Validator as "SBM IValidation Logger";
+                if Validator is "DEMO IValidation Logger" then begin
+                    Logger := Validator as "DEMO IValidation Logger";
                     // Logger already logged in Validate, but could do additional logging
                 end;
             end;
@@ -362,11 +362,11 @@ codeunit 50140 "SBM Validation Runner"
         exit(AllPassed);
     end;
 
-    local procedure LoadValidators(var Validators: List of [Interface "SBM IOrder Validator"])
+    local procedure LoadValidators(var Validators: List of [Interface "DEMO IOrder Validator"])
     var
-        CreditValidator: Codeunit "SBM Credit Limit Validator";
-        StockValidator: Codeunit "SBM Stock Availability Validator";
-        AddressValidator: Codeunit "SBM Address Validator";
+        CreditValidator: Codeunit "DEMO Credit Limit Validator";
+        StockValidator: Codeunit "DEMO Stock Availability Validator";
+        AddressValidator: Codeunit "DEMO Address Validator";
     begin
         Validators.Add(CreditValidator);
         Validators.Add(StockValidator);
@@ -382,7 +382,7 @@ This pattern is used in the System Application for Email, Document Sharing, etc.
 ### Base Interface
 
 ```al
-interface "SBM IDocument Handler"
+interface "DEMO IDocument Handler"
 {
     procedure CanHandle(RecordVariant: Variant): Boolean;
     procedure GetDocumentName(RecordVariant: Variant): Text;
@@ -393,19 +393,19 @@ interface "SBM IDocument Handler"
 ### Handler Registry Pattern
 
 ```al
-codeunit 50150 "SBM Document Handler Registry"
+codeunit 50150 "DEMO Document Handler Registry"
 {
     var
-        Handlers: List of [Interface "SBM IDocument Handler"];
+        Handlers: List of [Interface "DEMO IDocument Handler"];
 
-    procedure RegisterHandler(Handler: Interface "SBM IDocument Handler")
+    procedure RegisterHandler(Handler: Interface "DEMO IDocument Handler")
     begin
         Handlers.Add(Handler);
     end;
 
-    procedure FindHandler(RecordVariant: Variant; var Handler: Interface "SBM IDocument Handler"): Boolean
+    procedure FindHandler(RecordVariant: Variant; var Handler: Interface "DEMO IDocument Handler"): Boolean
     var
-        CurrentHandler: Interface "SBM IDocument Handler";
+        CurrentHandler: Interface "DEMO IDocument Handler";
     begin
         foreach CurrentHandler in Handlers do
             if CurrentHandler.CanHandle(RecordVariant) then begin
@@ -417,18 +417,18 @@ codeunit 50150 "SBM Document Handler Registry"
 
     procedure GenerateDocument(RecordVariant: Variant; var TempBlob: Codeunit "Temp Blob"): Boolean
     var
-        Handler: Interface "SBM IDocument Handler";
+        Handler: Interface "DEMO IDocument Handler";
     begin
         if not FindHandler(RecordVariant, Handler) then
             exit(false);
         exit(Handler.GeneratePDF(RecordVariant, TempBlob));
     end;
 
-    [EventSubscriber(ObjectType::Codeunit, Codeunit::"SBM Document Handler Registry", 'OnRegisterHandlers', '', false, false)]
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"DEMO Document Handler Registry", 'OnRegisterHandlers', '', false, false)]
     local procedure OnRegisterHandlers()
     var
-        SalesHandler: Codeunit "SBM Sales Document Handler";
-        PurchHandler: Codeunit "SBM Purchase Document Handler";
+        SalesHandler: Codeunit "DEMO Sales Document Handler";
+        PurchHandler: Codeunit "DEMO Purchase Document Handler";
     begin
         RegisterHandler(SalesHandler);
         RegisterHandler(PurchHandler);
@@ -444,7 +444,7 @@ codeunit 50150 "SBM Document Handler Registry"
 ### Sales Document Handler
 
 ```al
-codeunit 50151 "SBM Sales Document Handler" implements "SBM IDocument Handler"
+codeunit 50151 "DEMO Sales Document Handler" implements "DEMO IDocument Handler"
 {
     procedure CanHandle(RecordVariant: Variant): Boolean
     var
