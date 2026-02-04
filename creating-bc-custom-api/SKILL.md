@@ -225,16 +225,34 @@ https://api.businesscentral.dynamics.com/v2.0/<TenantID>/<Environment>/api/<publ
 https://api.businesscentral.dynamics.com/v2.0/contoso.com/Production/api/contoso/rental/v2.0/companies(xxx)/rentalMachines
 ```
 
-## Schema Version 2.0 (BC v24+)
+## Schema Version and OData Features (BC v24+)
 
-Starting BC v24, enum values are returned as XML-encoded names instead of captions:
+### Enum Values (schemaversion 2.0)
 
-- `Open` becomes `Open`
-- `Return Order` becomes `Return_x0020_Order`
+Starting BC v24, enum values are returned as XML-encoded names:
+- `Return Order` → `Return_x0020_Order`
 
-**Solutions:**
-1. Add `?$schemaversion=1.0` to requests for old behavior
-2. Handle XML encoding in client code
+Add `?$schemaversion=1.0` for old behavior.
+
+### IN Operator (schemaversion 2.1)
+
+```
+?$schemaversion=2.1&$filter=status in ('Open', 'Released')
+```
+Without it → `BadRequest_MethodNotImplemented`.
+
+### Filter inside $expand
+
+```
+?$expand=lines($filter=type eq 'Item')
+```
+Parentheses required around nested options.
+
+### Multi-level Expand
+
+```
+?$expand=lines($expand=item($expand=category))
+```
 
 ## Best Practices
 

@@ -146,10 +146,29 @@ If-Match: *
 ?$filter=contains(displayName,'Smith')
 ```
 
+**$filter with IN operator (BC24+):**
+
+Requires `$schemaversion=2.1` in URL:
+```
+?$schemaversion=2.1&$filter=number in ('10000', '20000', '30000')
+```
+Without `$schemaversion=2.1`, returns error `BadRequest_MethodNotImplemented`.
+
 **$expand** - Include related entities:
 ```
 ?$expand=salesOrderLines
 ?$expand=customer($select=displayName,email)
+```
+
+**Filter inside $expand:**
+```
+?$expand=salesOrderLines($filter=lineType eq 'Item')
+```
+Note: Use parentheses `()` around the nested query options.
+
+**Multi-level expand:**
+```
+?$expand=salesOrderLines($expand=item($expand=itemCategory))
 ```
 
 **$orderby** - Sort results:
@@ -157,6 +176,12 @@ If-Match: *
 ?$orderby=displayName
 ?$orderby=lastModifiedDateTime desc
 ```
+
+**$count** - Get total count:
+```
+/salesOrders/$count
+```
+Returns integer count of matching records.
 
 ### Step 5: Handle Pagination
 
